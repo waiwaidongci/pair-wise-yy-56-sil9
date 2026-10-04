@@ -7,6 +7,7 @@ import { provideApollo } from 'apollo-angular'
 import { ApolloLink, InMemoryCache, Observable } from '@apollo/client/core'
 import { routes } from './app.routes'
 import { weldReducer } from './store/weld.reducer'
+import { scopeReducer } from './scope/scope.reducer'
 
 const mockGraphqlLink = new ApolloLink((operation) => new Observable((observer) => {
   setTimeout(() => {
@@ -32,7 +33,7 @@ const mockData = {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideStore({ welds: weldReducer }),
+    provideStore({ welds: weldReducer, scope: scopeReducer }),
     providePrimeNG({ theme: { preset: Aura, options: { darkModeSelector: false } } }),
     provideApollo(() => ({ cache: new InMemoryCache(), link: mockGraphqlLink })),
   ],

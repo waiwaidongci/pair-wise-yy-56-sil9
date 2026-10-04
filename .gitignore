@@ -1,0 +1,6 @@
+node_modules/
+dist/
+dist-scope/
+.angular/
+*.log
+.DS_Store

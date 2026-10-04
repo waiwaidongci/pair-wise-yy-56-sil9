@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2022",
+    "moduleResolution": "node",
+    "outDir": "../dist-scope",
+    "rootDir": "../src/app/scope",
+    "strict": true,
+    "skipLibCheck": true,
+    "declaration": false
+  },
+  "include": ["../src/app/scope/scope.types.ts", "../src/app/scope/scope.engine.ts", "../src/app/scope/scope.seed.ts"]
+}
