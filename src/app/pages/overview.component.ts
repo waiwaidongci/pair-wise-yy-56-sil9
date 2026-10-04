@@ -30,7 +30,10 @@ export class OverviewComponent implements OnInit {
   statusOptions = ['全部','待检测','合格','返修中','待复检','已关闭']
   ngOnInit() {
     this.store.select('welds').subscribe((state) => this.state = state)
-    this.api.load().subscribe(({ welds, plans }) => this.store.dispatch(A.loadWeldsSuccess({ welds, plans })))
+    this.api.load().subscribe((data) => {
+      this.store.dispatch(A.loadWeldsSuccess({ welds: data.welds, plans: data.plans }))
+      this.store.dispatch(A.loadScopeSuccess({ certificates: data.certificates, processCards: data.processCards, conflicts: data.conflicts, failedSaves: data.failedSaves }))
+    })
   }
   get filtered() { return this.filter === '全部' ? this.state?.welds ?? [] : (this.state?.welds ?? []).filter((item) => item.status === this.filter) }
   get pending() { return (this.state?.welds ?? []).filter((item) => ['待检测','返修中','待复检'].includes(item.status)).length }
